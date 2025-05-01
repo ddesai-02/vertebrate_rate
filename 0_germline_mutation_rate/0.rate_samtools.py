@@ -47,7 +47,7 @@ for sp in range(0,len(species)):
         file.write('#SBATCH --account={} \n'.format(account))
         file.write('#SBATCH --mem 10G \n')
         file.write('#SBATCH --cpus-per-task=1 \n')
-        file.write('#SBATCH --time=11:59:00 \n')
+        file.write('#SBATCH --time=2:59:00 \n')
         for line in range(0,len(denovo_to_check)):
             chrom=denovo_to_check.iloc[line,0]
             pos=denovo_to_check.iloc[line,1]

@@ -30,7 +30,7 @@ for sp in range(0,len(species)):
     direct_here="/home/lucie/MammalianMutation/pipeline_NGS/playing_around/re_run_denovo/{}/".format(sp_target)
     direct = "{}/{}/".format(path, sp_target)
     # Dictionary:
-    pedigree_sp=pd.read_csv('{}/pedigree.ped'.format(direct), sep=' ', index_col=None, header=None)
+    pedigree_sp=pd.read_csv('{}/pedigree.ped'.format(direct), sep='\t', index_col=None, header=None)
     for sample in range(0,len(pedigree_sp)):
         off = pedigree_sp.iloc[sample,2]
         print(off)

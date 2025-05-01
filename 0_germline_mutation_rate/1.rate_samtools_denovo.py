@@ -61,16 +61,16 @@ for sp in range(0,len(species)):
             chrom = denovo_to_check.iloc[denovo,0]
             pos = denovo_to_check.iloc[denovo,1]
             if len(table_pass.loc[(table_pass[0] ==chrom) & (table_pass[1] == pos)])>0:
-                data_new=data_new.append(denovo_to_check.iloc[denovo])
+                data_new = pd.concat([data_new, denovo_to_check.iloc[[denovo]]], ignore_index=True)
                 print('pass')
             elif len(table_nov.loc[(table_nov[0] ==chrom) & (table_nov[1] == pos)])>0:
-                data_nov=data_nov.append(denovo_to_check.iloc[denovo])
+                data_nov = pd.concat([data_nov, denovo_to_check.iloc[[denovo]]], ignore_index=True)
                 print('nov')
             elif len(table_parentv.loc[(table_parentv[0] ==chrom) & (table_parentv[1] == pos)])>0:
-                data_parentv=data_parentv.append(denovo_to_check.iloc[denovo])
+                data_parentv = pd.concat([data_parentv, denovo_to_check.iloc[[denovo]]], ignore_index=True)
                 print('parentv')
             elif len(table_idk.loc[(table_idk[0] ==chrom) & (table_idk[1] == pos)])>0:
-                data_idk=data_idk.append(denovo_to_check.iloc[denovo])
+                data_idk = pd.concat([data_idk, denovo_to_check.iloc[[denovo]]], ignore_index=True)
                 print('idk')
         nb_denovo=len(data_new)
         file = open('{}denovo.txt'.format(direct_denovo),'a')

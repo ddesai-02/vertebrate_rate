@@ -36,7 +36,7 @@ for sp in range(0,len(species)):
     direct_ref="{}/{}/ref_fasta/".format(path, sp_target)
     direct = "{}/{}/".format(path, sp_target)
     # Dictionary:
-    pedigree_sp=pd.read_csv('{}/pedigree.ped'.format(direct), sep=' ', index_col=None, header=None)
+    pedigree_sp=pd.read_csv('{}/pedigree.ped'.format(direct), sep='\t', index_col=None, header=None)
     for sample in range(0,len(pedigree_sp)):
         fa = pedigree_sp.iloc[sample,2]
         mo = pedigree_sp.iloc[sample,3]
@@ -51,7 +51,7 @@ for sp in range(0,len(species)):
         for line in range(0,len(denovo_to_check)):
             chrom=denovo_to_check.iloc[line,0]
             pos=denovo_to_check.iloc[line,1]
-            file.write('samtools mpileup -ugf {}{} -r {}:{}-{} {}{}_sorted.merged.addg.uniq.rmdup.bam {}{}_sorted.merged.addg.uniq.rmdup.bam {}{}_sorted.merged.addg.uniq.rmdup.bam | bcftools call -m | tail -1 | cut -f1,2,4,5,10,11,12 >> {}/{}/de_novo_mutation/{}_samtools.txt \n'.format(direct_ref, genome_target, chrom, pos, pos, direct_bam, fa, direct_bam, mo, direct_bam, off, direct, sp_target, off))
+            file.write('bcftools mpileup -Ougf {}{} -r {}:{}-{} {}{}_sorted.merged.addg.uniq.rmdup.bam {}{}_sorted.merged.addg.uniq.rmdup.bam {}{}_sorted.merged.addg.uniq.rmdup.bam | bcftools call -m | tail -1 | cut -f1,2,4,5,10,11,12 >> {}/{}/de_novo_mutation/{}_samtools.txt \n'.format(direct_ref, genome_target, chrom, pos, pos, direct_bam, fa, direct_bam, mo, direct_bam, off, direct, sp_target, off))
         file.close()
         sub_cmd = "sbatch -o {}/{}_samtools.out {}/{}_samtools.sh".format(sp_target, off, sp_target, off)
         subprocess.call(sub_cmd, shell=True)

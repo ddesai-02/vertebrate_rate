@@ -32,7 +32,7 @@ for sp in range(0,len(species)):
     # Dictionary:
     pedigree_sp=pd.read_csv('{}/pedigree.ped'.format(direct), sep='\t', index_col=None, header=None)
     for sample in range(0,len(pedigree_sp)):
-        off = pedigree_sp.iloc[sample,2]
+        off = pedigree_sp.iloc[sample,1]
         print(off)
         denovo_to_check=pd.read_csv('{}data_denovo_{}.tab'.format(direct_denovo, off), sep='\t', index_col=None)
         denovo_samtools=pd.read_csv('{}{}_samtools.txt'.format(direct_denovo, off), sep='\t', index_col=None, header=None)

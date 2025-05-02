@@ -42,7 +42,7 @@ for sp in range(0,len(species)):
         trio_dir[name].append((off, fa, mo))
 
     # Import nb mutation and fnr
-    nb_denovo = pd.read_csv('{}/denovo.txt'.format(sp_target),sep=' ', index_col=None, header=None)
+    nb_denovo = pd.read_csv('{}denovo.txt'.format(direct_denovo),sep=' ', index_col=None, header=None)
     fnr = pd.read_csv('{}fnr.txt'.format(direct_denovo),sep=' ', index_col=None, header=None)
     call = pd.read_csv('{}callability.txt'.format(direct_denovo),sep=' ', index_col=None, header=None)
     # Find the overall fnr:
@@ -54,7 +54,7 @@ for sp in range(0,len(species)):
     alpha_all = 1 - ((1-a_FS)*(1-a_RP)*(1-a_MQRS)*(1-fnr_all))
     print('alpha={}'.format(alpha_all))
     # Find the mutation rate per trios:
-    file = open('{}/mutation_rate.txt'.format(sp_target),'w')
+    file = open('{}/mutation_rate.txt'.format(direct_denovo),'w')
     for name in trio_dir:
         nb_mut=nb_denovo.loc[nb_denovo[0] ==name][1]
         C=call.loc[call[0] ==name][1]

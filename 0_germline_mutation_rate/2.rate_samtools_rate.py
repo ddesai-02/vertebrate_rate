@@ -3,6 +3,7 @@
 This script ccalculate a mutation rate.
 
 Lucie Bergeron
+    Devan Desai
 03.12.18
 """
 ##################################################
@@ -12,6 +13,7 @@ Lucie Bergeron
 # Packages:
 import subprocess
 import os
+from variable import *
 import pandas as pd
 
 # Import species names:
@@ -24,11 +26,11 @@ species = pd.read_csv('sp_here.txt', sep=' ', index_col=None, header=None)
 for sp in range(0,len(species)):
     sp_target=species.loc[sp,0]
     # Directories:
-    direct_denovo="/home/lucie/MammalianMutation/faststorage/{}/de_novo_mutation/".format(sp_target)
-    direct_handling="/home/lucie/MammalianMutation/faststorage/{}/vcf_handling/".format(sp_target)
-    direct="/home/lucie/MammalianMutation/faststorage/{}/".format(sp_target)
+    direct_denovo="{}/{}/de_novo_mutation/".format(path, sp)
+    direct_handling="{}/vcf_handling/".format(path, sp)
+    direct="{}/{}/".format(path, sp)
     # Dictionary:
-    f = open('/home/lucie/MammalianMutation/faststorage/{}/pedigree.ped'.format(sp_target))
+    f = open('/{}/pedigree.ped'.format(direct))
     trio_dir = {}
     for line in f:
         off = line.split()[1]
@@ -46,9 +48,9 @@ for sp in range(0,len(species)):
     # Find the overall fnr:
     fnr_all=round(sum(fnr[2])/sum(fnr[1]),5)
     # Alpha allelic balance AND site filter
-    a_RP=0.002699796
-    a_MQRS=0.0227818
-    a_FS=0.01
+    a_RP=0.0025696749
+    a_MQRS=0.0331547715
+    a_FS=0.0182736502
     alpha_all = 1 - ((1-a_FS)*(1-a_RP)*(1-a_MQRS)*(1-fnr_all))
     print('alpha={}'.format(alpha_all))
     # Find the mutation rate per trios:
@@ -60,4 +62,3 @@ for sp in range(0,len(species)):
         mut_rate = (float(nb_mut))/(2*float(C)*(1-float(alpha)))
         file.write('{} {} \n'.format(name, mut_rate))
     file.close()
-

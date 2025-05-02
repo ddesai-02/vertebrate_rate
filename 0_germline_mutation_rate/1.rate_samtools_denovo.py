@@ -76,7 +76,7 @@ for sp in range(0,len(species)):
         file = open('{}denovo.txt'.format(direct_denovo),'a')
         file.write('{} {} \n'.format(off,nb_denovo))
         file.close()
-        data_new.to_csv('{}data_denovo_{}.tab'.format(direct_denovo, off), sep='\t')
+        data_new.to_csv('{}data_denovo_{}_new.tab'.format(direct_denovo, off), sep='\t')
         data_nov.to_csv('{}data_denovo_{}_nov.tab'.format(direct_denovo, off), sep='\t')
         data_parentv.to_csv('{}data_denovo_{}_parentv.tab'.format(direct_denovo, off), sep='\t')
         data_idk.to_csv('{}data_denovo_{}_idk.tab'.format(direct_denovo, off), sep='\t')

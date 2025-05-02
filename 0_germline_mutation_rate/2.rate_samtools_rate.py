@@ -26,9 +26,9 @@ species = pd.read_csv('sp_here.txt', sep=' ', index_col=None, header=None)
 for sp in range(0,len(species)):
     sp_target=species.loc[sp,0]
     # Directories:
-    direct_denovo="{}/{}/de_novo_mutation/".format(path, sp)
-    direct_handling="{}/vcf_handling/".format(path, sp)
-    direct="{}/{}/".format(path, sp)
+    direct_denovo="{}/{}/de_novo_mutation/".format(path, sp_target)
+    direct_handling="{}/vcf_handling/".format(path, sp_target)
+    direct="{}/{}/".format(path, sp_target)
     # Dictionary:
     f = open('/{}/pedigree.ped'.format(direct))
     trio_dir = {}
